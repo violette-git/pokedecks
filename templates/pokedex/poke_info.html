@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- BOOTSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+    <!-- BOOTSTRAP MASONRY PLUGIN -->
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+        integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
+        async></script>
+
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="{% static '/styles.css' %}">
+    <link
+        href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAEgDqAOvr6wD///8ABQAAAPHx8QDq6uoA9/f3APDw8ADp6ekA7+/vAPX19QD7+/sA9PT0AO3t7QD6+voA+fn5APLy8gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkJCQkAAAAAAAAAAAAACQIODg4OAgkAAAAAAAAABg4KCAUFCAoOBgAAAAAACQ4IEQ0LCw0RCA4JAAAAAAIKEQsHEBAHCxEKAgAAAAkOCA0HDwwMDwcNCA4JAAAEDgULEAwEBAwQCwUOBAAABAQECxAEAAAEEAsEBAQAAAEBBAQEAwMDAwQEBAEBAAAAAQEBAQMDAwMBAQEBAAAAAAEBAQEBBAQBAQMDAQAAAAAAAQEBAQEBAQEBAQAAAAAAAAABAQEBAQEBAQAAAAAAAAAAAAABAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//AAD4HwAA8A8AAOAHAADAAwAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAwAMAAOAHAADwDwAA+B8AAP//AAA="
+        rel="icon" type="image/x-icon" />
+
+    
+
+    <title>Pokedex</title>
+</head>
+<body>
+    
+    <div class="card m-4 shadow-lg  d-flex justify-content-center align-items-center" id="poke_card" name="{{poke.name}}"
+        style="background-color:#ffcb05; ">
+        <div class="card gap-1 d-flex justify-content-center align-items-center " id="poke_card_in" style="background-color:#f9af38; ">
+            <h6 class="pt-2 ">
+                {{ poke.name.capitalize }} No. {{ poke.number }}
+            </h6>
+            <div class="card shadow d-flex justify-content-center align-items-center" id="poke_card_image"
+                style="background-color: #fa0303;">
+
+                <div class="figure" >
+                    
+                        <button style="background-color:#fa0303; border: none">
+
+                            <a >
+                                <img class="image-main"   src="{{ poke.image_front }}" srcset="{{ poke.image_front }}"
+                                    alt="Demo image 1">
+
+                            </a>
+                            <a href="" value="{{ poke.name }}">
+                                <img class="image-hover"id="hover" style="background-color:#fa0303" src="{{ poke.image_back }}"
+                                    srcset="{{ poke.image_back }}">
+
+                            </a>
+                        </button>
+                        
+                    
+
+                    <audio id="audio" autoplay preload="auto">
+                        <source src="\static\audio\{{ poke.name }}-cry.ogg"/>
+                        <source src="\static\audio\{{ poke.name }}-cry.mp3"/>
+                    </audio> 
+                    
+                </div>
+
+
+
+
+            </div>
+            <h6 class="pt-2">Height: {{poke.height}} </h6>
+            <h6>Weight: {{poke.weight}} </h6>
+            
+            <h6 class="d-flex justify-content-center align-items-center">
+                Type:{% for type in poke.types.all %}{{ type }}/ 
+                {% endfor %}
+            </h6>
+        </div>
+
+    </div>
+</body>
