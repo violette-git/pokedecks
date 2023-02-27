@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import decouple
+import psycopg2
+import dj_database_url
+import django_heroku
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,10 +30,21 @@ STATICFILES_DIRS = [str(BASE_DIR.joinpath("static"))]
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)sv#-!+au60t&gmqc__^^kbca74c!t(m*uv)_q4hzq^-(6w&y7'
+# SECRET_KEY = 'django-insecure-)sv#-!+au60t&gmqc__^^kbca74c!t(m*uv)_q4hzq^-(6w&y7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = decouple.config('DJANGO-DEBUG', cast=bool)
+
+if DEBUG:
+
+    key = 'DJANGO_SECRET_KEY_DEV'
+
+else:
+
+    key = 'DJANGO_SECRET_KEY_PRO'
+
+SECRET_KEY = decouple.config(key)
 
 ALLOWED_HOSTS = ['localhost', '192.168.68.105']
 
@@ -80,12 +96,23 @@ WSGI_APPLICATION = 'pokedex_org_proj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+
+    DATABASE_URL = decouple.config('DATABASE_URL')
+
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    }
+
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 
 # Password validation
@@ -123,8 +150,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+django_heroku.settings(locals())

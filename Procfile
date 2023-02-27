@@ -1,0 +1,1 @@
+web: gunincorn pokedex_org_proj.wsgi
