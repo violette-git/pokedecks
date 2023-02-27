@@ -1,0 +1,133 @@
+{% import static %}
+
+body{
+    background-color: #1a1a1a;
+}
+
+
+@font-face {
+    font-family: fontname;
+    src: url(Early\ GameBoy.ttf)
+
+}
+
+
+#foot {
+    border-top: 4px solid #ffcb05;
+    
+}
+
+#form {
+
+    display: flex;
+    flex-direction: row;
+}
+#logo {
+
+    background:fixed
+    
+}
+
+#search {
+    padding-top:15px;
+    font-family:fontname;
+    
+   
+}
+
+#typebox {
+
+    font-family:fontname;
+
+}
+
+#poke_card {
+    font-family:fontname;
+    font-size: 8px;
+    width: 238px;
+    height: 332px
+}
+
+#poke_card h6 {
+
+    font-size: 12px;
+}
+
+#test {
+    font-family: fontname;
+    background-size: cover ;
+    height:200px;
+    /* display: flex;
+    flex-direction: row; */
+   
+
+}
+
+#poke_card_in {
+
+    width: 218px;
+    height: 312px;
+    border-radius: 0;
+    
+}
+
+#poke_card_image {
+    border: 4px solid #ff9d00;
+    width:180px;
+    height: 160px
+    
+}
+
+.figure {
+    position: relative;
+    
+}
+
+.figure img.image-hover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity .7s;
+}
+
+.figure img.image-hover:hover {
+  opacity: 1;
+  background-image: none;
+}
+
+#navbutton {
+
+    font-family:fontname;
+
+}
+
+#split_1{
+    height: 100vh;
+}
+
+#split_2{
+    height: 100vh;
+}
+
+#poke_card_2 {
+    font-family:fontname;
+    font-size: 8px;
+    width: 238px;
+    height: 332px;
+    /* top: 40px; */
+    right: 160px;
+    position: relative;
+}
+
+#nav-bar {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+#pologo{
+    margin-top: 70px;
+}

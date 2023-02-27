@@ -17,7 +17,7 @@ import environ
 import decouple
 import psycopg2
 import dj_database_url
-import django_heroku
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,23 +32,23 @@ STATICFILES_DIRS = [str(BASE_DIR.joinpath("static"))]
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-)sv#-!+au60t&gmqc__^^kbca74c!t(m*uv)_q4hzq^-(6w&y7'
+SECRET_KEY = 'django-insecure-)sv#-!+au60t&gmqc__^^kbca74c!t(m*uv)_q4hzq^-(6w&y7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = decouple.config('DJANGO-DEBUG', cast=bool)
+# DEBUG = decouple.config('DJANGO-DEBUG', cast=bool)
+DEBUG = True
 
-if DEBUG:
+# if DEBUG:
 
-    key = 'DJANGO_SECRET_KEY_DEV'
+#     key = 'DJANGO_SECRET_KEY_DEV'
+    
+# else:
 
-else:
+#     key = 'DJANGO_SECRET_KEY_PRO'
 
-    key = 'DJANGO_SECRET_KEY_PRO'
+# SECRET_KEY = decouple.config(key)
 
-SECRET_KEY = decouple.config(key)
-
-ALLOWED_HOSTS = ['localhost', '192.168.68.105']
+ALLOWED_HOSTS = ['localhost', '192.168.68.105', '127.0.0.1']
 
 
 # Application definition
@@ -159,5 +159,3 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-django_heroku.settings(locals())
