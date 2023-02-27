@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from django.conf import settings
+import environ
 import decouple
 import psycopg2
 import dj_database_url
@@ -24,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 STATICFILES_DIRS = [str(BASE_DIR.joinpath("static"))]
-
+# env = environ.Env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
