@@ -35,18 +35,18 @@ STATICFILES_DIRS = [str(BASE_DIR.joinpath("static"))]
 SECRET_KEY = 'django-insecure-)sv#-!+au60t&gmqc__^^kbca74c!t(m*uv)_q4hzq^-(6w&y7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = decouple.config('DJANGO-DEBUG', cast=bool)
-DEBUG = True
+DEBUG = decouple.config('DJANGO-DEBUG', cast=bool)
+# DEBUG = True
 
-# if DEBUG:
+if DEBUG:
 
-#     key = 'DJANGO_SECRET_KEY_DEV'
+    key = 'DJANGO_SECRET_KEY_DEV'
     
-# else:
+else:
 
-#     key = 'DJANGO_SECRET_KEY_PRO'
+    key = 'DJANGO_SECRET_KEY_PRO'
 
-# SECRET_KEY = decouple.config(key)
+SECRET_KEY = decouple.config(key)
 
 ALLOWED_HOSTS = ['localhost', '192.168.68.105', '127.0.0.1']
 
